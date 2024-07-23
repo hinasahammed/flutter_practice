@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/practice/image_picker_practice.dart';
-import 'package:flutter_practice/practice/reverse_string.dart';
 
 void main() {
   runApp(const MyApp());
