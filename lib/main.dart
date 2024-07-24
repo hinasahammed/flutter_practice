@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/image_picker_practice.dart';
+import 'package:flutter_practice/practice/pickers/date_time_picker_practice.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
             seedColor: Colors.deepPurple, brightness: Brightness.dark),
         useMaterial3: true,
       ),
-      home: const ImagePickerPractice(),
+      home: const DateTimePickerPractice(),
     );
   }
 }

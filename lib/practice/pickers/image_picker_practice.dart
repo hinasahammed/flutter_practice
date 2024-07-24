@@ -13,7 +13,7 @@ class ImagePickerPractice extends StatefulWidget {
 
 class _ImagePickerPracticeState extends State<ImagePickerPractice> {
   File? _image;
-  void getImage(ImageSource source) async {
+  void getImage(ImageSource source, BuildContext context) async {
     final picker = ImagePicker();
     final pickedImage = await picker.pickImage(source: source);
     if (pickedImage != null) {
@@ -48,7 +48,7 @@ class _ImagePickerPracticeState extends State<ImagePickerPractice> {
         children: [
           FloatingActionButton(
             onPressed: () {
-              getImage(ImageSource.camera);
+              getImage(ImageSource.camera, context);
             },
             tooltip: "Camera",
             child: const Icon(
@@ -59,7 +59,7 @@ class _ImagePickerPracticeState extends State<ImagePickerPractice> {
           const Gap(10),
           FloatingActionButton(
             onPressed: () {
-              getImage(ImageSource.gallery);
+              getImage(ImageSource.gallery, context);
             },
             tooltip: "Gallery",
             child: const Icon(
