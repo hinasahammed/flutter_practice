@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/pickers/date_time_picker_practice.dart';
+import 'package:flutter_practice/practice/listview_and_seperated.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const DateTimePickerPractice(),
+      home: const ListviewAndSeperated(),
     );
   }
 }
