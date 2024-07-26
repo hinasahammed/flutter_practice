@@ -8,6 +8,12 @@ class FoodUiWithListview extends StatefulWidget {
 }
 
 class _FoodUiWithListviewState extends State<FoodUiWithListview> {
+  List imageUrl = [
+    "assets/images/fd1.png",
+    "assets/images/fd2.png",
+    "assets/images/fd3.png",
+    "assets/images/fd4.png",
+  ];
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -16,9 +22,10 @@ class _FoodUiWithListviewState extends State<FoodUiWithListview> {
       appBar: AppBar(
         title: const Text("Foods"),
       ),
-      body: Padding(
+      body: ListView.builder(
+        itemCount: imageUrl.length,
         padding: const EdgeInsets.all(16),
-        child: Stack(
+        itemBuilder: (context, index) => Stack(
           children: [
             const SizedBox(
               // color: Colors.red,
@@ -128,9 +135,9 @@ class _FoodUiWithListviewState extends State<FoodUiWithListview> {
               left: 10,
               top: 0,
               child: Image.asset(
-                "assets/images/fd2.png",
-                width: 100,
-                height: 100,
+                imageUrl[index],
+                width: 130,
+                height: 130,
                 fit: BoxFit.cover,
               ),
             )
