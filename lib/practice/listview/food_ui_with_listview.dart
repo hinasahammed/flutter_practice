@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/assets/images/image_asset.dart';
 
 class FoodUiWithListview extends StatefulWidget {
   const FoodUiWithListview({super.key});
@@ -9,10 +10,12 @@ class FoodUiWithListview extends StatefulWidget {
 
 class _FoodUiWithListviewState extends State<FoodUiWithListview> {
   List imageUrl = [
-    "assets/images/fd1.png",
-    "assets/images/fd2.png",
-    "assets/images/fd3.png",
-    "assets/images/fd4.png",
+   ImageAsset.chickenWing,
+   ImageAsset.chor,
+   ImageAsset.coffee,
+   ImageAsset.cookie,
+   ImageAsset.kabab,
+   ImageAsset.noodles,
   ];
   @override
   Widget build(BuildContext context) {
@@ -137,7 +140,6 @@ class _FoodUiWithListviewState extends State<FoodUiWithListview> {
               child: Image.asset(
                 imageUrl[index],
                 width: 130,
-                height: 130,
                 fit: BoxFit.cover,
               ),
             )
