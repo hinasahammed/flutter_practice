@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/drawer/drawer_practice.dart';
+import 'package:flutter_practice/practice/drawer/drawer_with_packages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const DrawerPractice(),
+      home: const DrawerWithPackages(),
     );
   }
 }
