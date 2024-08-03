@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/practice/drawer/advanced_drawer_custom.dart';
+import 'package:flutter_practice/practice/tabBar/tabbar_practice.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const AdvancedDrawerCustom(),
+      home: const TabbarPractice(),
     );
   }
 }
