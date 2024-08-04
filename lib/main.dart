@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/segmentAndToggleButton/segmen_toggle_btn.dart';
+import 'package:flutter_practice/practice/tabBar/tabbar_practice.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const SegmenToggleBtn(),
+      home: const TabbarPractice(),
     );
   }
 }
