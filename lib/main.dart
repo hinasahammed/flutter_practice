@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/tabBar/tabbar_practice.dart';
+import 'package:flutter_practice/practice/animation/explicit/explicit_animation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const TabbarPractice(),
+      home: const ExplicitAnimation(),
     );
   }
 }
