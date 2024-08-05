@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
-import 'package:hidden_drawer_menu/model/item_hidden_menu.dart';
-import 'package:hidden_drawer_menu/model/screen_hidden_drawer.dart';
 
 class DrawerWithPackages extends StatefulWidget {
   const DrawerWithPackages({super.key});
@@ -27,7 +25,7 @@ class _DrawerWithPackagesState extends State<DrawerWithPackages> {
         ),
         Container(
           color: Colors.red,
-        )));
+        ),),);
 
     itens.add(ScreenHiddenDrawer(
         ItemHiddenMenu(

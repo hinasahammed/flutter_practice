@@ -54,7 +54,7 @@ class _TabbarPracticeState extends State<TabbarPractice>
           ),
         ],
       ),
-      bottomSheet: TabBar(
+      bottomNavigationBar: TabBar(
         controller: tabController,
         tabs: [
           Tab(
