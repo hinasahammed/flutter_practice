@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/urlLauncher/url_launcher_practice.dart';
+import 'package:flutter_practice/practice/darkmodeLightmode/darkmode_lightmode.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const UrlLauncherPractice(),
+      home: const DarkmodeLightmode(),
     );
   }
 }
