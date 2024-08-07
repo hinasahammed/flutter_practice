@@ -206,7 +206,7 @@ class UrlLauncherPractice extends StatelessWidget {
           const SnackBar(
             content: Row(
               children: [
-                Icon(
+                Icon( 
                   Icons.error,
                   color: Colors.black,
                 ),
