@@ -9,31 +9,17 @@ class DarkmodeLightmode extends StatefulWidget {
 }
 
 class _DarkmodeLightmodeState extends State<DarkmodeLightmode> {
+  ValueNotifier<bool> isDarkMode = ValueNotifier<bool>(false);
   @override
   void initState() {
     super.initState();
-    fetchThemeMode();
+    fetch();
   }
 
-  void fetchThemeMode() async {
-    final pref = await SharedPreferences.getInstance();
-    var val = pref.getBool("isDarkmode");
-    setState(() {
-      isDarkmode = val ?? true;
-    });
+  Future<void> fetch() async {
+    isDarkMode.value = await ChangeTheme().fetchThemeMode();
   }
 
-  void chengeTheme(bool theme) async {
-    final pref = await SharedPreferences.getInstance();
-
-    pref.setBool("isDarkmode", theme);
-
-    setState(() {
-      isDarkmode = theme;
-    });
-  }
-
-  bool isDarkmode = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,19 +33,38 @@ class _DarkmodeLightmodeState extends State<DarkmodeLightmode> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Card(
-                child: SwitchListTile(
-                  value: isDarkmode,
-                  onChanged: (newValue) {
-                    chengeTheme(newValue);
-                  },
-                  title: const Text("Darkmode"),
-                ),
-              ),
+              ValueListenableBuilder(
+                valueListenable: isDarkMode,
+                builder: (context, isDark, child) {
+                  return Card(
+                    child: SwitchListTile(
+                      value: isDark,
+                      onChanged: (newValue) {
+                        isDarkMode.value = newValue;
+                        ChangeTheme().chengeTheme(newValue);
+                      },
+                      title: const Text("Darkmode"),
+                    ),
+                  );
+                },
+              )
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class ChangeTheme {
+  Future<bool> fetchThemeMode() async {
+    final pref = await SharedPreferences.getInstance();
+    var val = pref.getBool("isDarkmode");
+    return val ?? true;
+  }
+
+  void chengeTheme(bool theme) async {
+    final pref = await SharedPreferences.getInstance();
+    pref.setBool("isDarkmode", theme);
   }
 }
