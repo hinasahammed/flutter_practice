@@ -11,64 +11,56 @@ class TabbarPractice extends StatefulWidget {
   State<TabbarPractice> createState() => _TabbarPracticeState();
 }
 
-class _TabbarPracticeState extends State<TabbarPractice>
-    with SingleTickerProviderStateMixin {
-  late TabController tabController;
-  @override
-  void initState() {
-    tabController = TabController(length: 4, vsync: this);
-    tabController.addListener(() {
-      setState(() {});
-    });
-    super.initState();
-  }
+class _TabbarPracticeState extends State<TabbarPractice> {
+  
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: TabBarView(
-        controller: tabController,
-        children: const [
-          ChatsView(),
-          UpdatesView(),
-          CommunityView(),
-          CallsView(),
-        ],
-      ),
-      bottomNavigationBar: TabBar(
-        controller: tabController,
-        indicator: const BoxDecoration(
-            // color: Colors.red,
-            ),
-        tabs: const [
-          Tab(
-            text: "Chats",
-            icon: Icon(
-              Icons.chat,
-              color: Color.fromARGB(255, 161, 225, 163),
-            ),
-          ),
-          Tab(
-            text: "Updates",
-            icon: Icon(
-              Icons.tips_and_updates,
-              color: Color.fromARGB(255, 161, 225, 163),
-            ),
-          ),
-          Tab(
-              text: "Communities",
+    return const DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        body: TabBarView(
+          children: [
+            ChatsView(),
+            UpdatesView(),
+            CommunityView(),
+            CallsView(),
+          ],
+        ),
+        bottomNavigationBar: TabBar(
+          indicator: BoxDecoration(
+              // color: Colors.red,
+              ),
+          tabs: [
+            Tab(
+              text: "Chats",
               icon: Icon(
-                Icons.people,
+                Icons.chat,
                 color: Color.fromARGB(255, 161, 225, 163),
-              )),
-          Tab(
-            text: "Calls",
-            icon: Icon(
-              Icons.phone,
-              color: Color.fromARGB(255, 161, 225, 163),
+              ),
             ),
-          )
-        ],
+            Tab(
+              text: "Updates",
+              icon: Icon(
+                Icons.tips_and_updates,
+                color: Color.fromARGB(255, 161, 225, 163),
+              ),
+            ),
+            Tab(
+                text: "Communities",
+                icon: Icon(
+                  Icons.people,
+                  color: Color.fromARGB(255, 161, 225, 163),
+                )),
+            Tab(
+              text: "Calls",
+              icon: Icon(
+                Icons.phone,
+                color: Color.fromARGB(255, 161, 225, 163),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
