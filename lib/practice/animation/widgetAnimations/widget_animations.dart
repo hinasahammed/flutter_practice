@@ -118,11 +118,12 @@ class _WidgetAnimationsState extends State<WidgetAnimations> {
             const TextMarquee(
               '"Stay close to anything that makes you glad you are alive." -Hafez',
               spaceSize: 72,
-              duration: Duration(seconds: 4),
+              duration: Duration(seconds: 5),
               style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24),
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 24,
+              ),
             ),
             const Spacer(),
             SizedBox(
