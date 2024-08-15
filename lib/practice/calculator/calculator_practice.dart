@@ -27,11 +27,15 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
     "2",
     "3",
     "+",
-    ";",
+    "00",
     "0",
     ".",
     "=",
   ];
+
+  String lastOperator = '';
+  double allAnswer = 0.0;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -54,22 +58,25 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
               children: [
                 TextFormField(
                   controller: calculatorField,
+                  style: theme.textTheme.titleLarge!.copyWith(
+                    color: theme.colorScheme.onSurface.withOpacity(.5),
+                  ),
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "0",
                       hintTextDirection: TextDirection.rtl,
-                      hintStyle: theme.textTheme.bodyLarge!.copyWith(
-                        color: theme.colorScheme.onSurface,
+                      hintStyle: theme.textTheme.titleLarge!.copyWith(
+                        color: theme.colorScheme.onSurface.withOpacity(.5),
                       )),
                   textDirection: TextDirection.rtl,
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Text(
-                    "1050",
-                    style: theme.textTheme.titleLarge!.copyWith(
+                    allAnswer.toString(),
+                    style: theme.textTheme.headlineSmall!.copyWith(
                       color: theme.colorScheme.onSurface,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -91,8 +98,31 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
             ),
             itemBuilder: (context, index) => InkWell(
               onTap: () {
-                var val = calculatorField.text;
-                calculatorField.text = val + calculatorBtns[index];
+                switch (calculatorBtns[index]) {
+                  case "+":
+                    operaion(calculatorBtns[index]);
+                    break;
+                  case "-":
+                    operaion(calculatorBtns[index]);
+                    break;
+                  case "*":
+                    operaion(calculatorBtns[index]);
+                    break;
+                  case "/":
+                    operaion(calculatorBtns[index]);
+                    break;
+                  case "=":
+                    equalOperation();
+                    break;
+                  case "C":
+                    clear();
+                    break;
+                  case "<=":
+                    clearOneValue();
+                    break;
+                  default:
+                    addValues(calculatorBtns[index]);
+                }
               },
               child: Container(
                 alignment: Alignment.center,
@@ -123,5 +153,84 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
 
   void clear() {
     calculatorField.clear();
+    setState(() {
+      allAnswer = 0;
+    });
+  }
+
+  void addValues(String userVal) {
+    var val = calculatorField.text;
+    calculatorField.text = val + userVal;
+  }
+
+  void clearOneValue() {
+    var currentValue = calculatorField.text;
+    if (currentValue.isNotEmpty) {
+      calculatorField.text = currentValue.substring(0, currentValue.length - 1);
+    }
+  }
+
+  void operaion(String val) {
+    if (calculatorField.text.isNotEmpty) {
+      switch (val) {
+        case "+":
+          setState(() {
+            allAnswer += int.parse(calculatorField.text);
+            lastOperator = val;
+          });
+          break;
+        case "-":
+          setState(() {
+            allAnswer -= int.parse(calculatorField.text);
+            lastOperator = val;
+          });
+          break;
+        case "*":
+          setState(() {
+            allAnswer *= int.parse(calculatorField.text);
+            print(allAnswer);
+            lastOperator = val;
+          });
+          break;
+        case "/":
+          setState(() {
+            allAnswer /= int.parse(calculatorField.text);
+            lastOperator = val;
+          });
+          break;
+        default:
+      }
+      calculatorField.clear();
+    }
+  }
+
+  void equalOperation() {
+    switch (lastOperator) {
+      case "+":
+        setState(() {
+          allAnswer += int.parse(calculatorField.text);
+          calculatorField.clear();
+        });
+        break;
+      case "-":
+        setState(() {
+          allAnswer -= int.parse(calculatorField.text);
+          calculatorField.clear();
+        });
+        break;
+      case "*":
+        setState(() {
+          allAnswer *= int.parse(calculatorField.text);
+          calculatorField.clear();
+        });
+        break;
+      case "/":
+        setState(() {
+          allAnswer /= int.parse(calculatorField.text);
+          calculatorField.clear();
+        });
+        break;
+      default:
+    }
   }
 }
