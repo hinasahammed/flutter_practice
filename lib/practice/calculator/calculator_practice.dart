@@ -35,6 +35,7 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
 
   String lastOperator = '';
   double allAnswer = 0.0;
+  double specialAnswer = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -187,8 +188,7 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
           break;
         case "*":
           setState(() {
-            allAnswer *= int.parse(calculatorField.text);
-            print(allAnswer);
+            specialAnswer = specialAnswer * double.parse(calculatorField.text);
             lastOperator = val;
           });
           break;
@@ -220,7 +220,9 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
         break;
       case "*":
         setState(() {
-          allAnswer *= int.parse(calculatorField.text);
+          specialAnswer = specialAnswer * double.parse(calculatorField.text);
+          print(specialAnswer);
+
           calculatorField.clear();
         });
         break;
