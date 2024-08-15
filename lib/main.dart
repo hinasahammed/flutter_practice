@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/calculator/calculator.dart';
 import 'package:flutter_practice/practice/calculator/calculator_practice.dart';
 
 void main() {
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const CalculatorHome(),
+      home: const CalculatorPractice(),
     );
   }
 }

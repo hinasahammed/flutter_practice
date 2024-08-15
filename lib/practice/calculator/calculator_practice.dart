@@ -173,66 +173,63 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
 
   void operaion(String val) {
     if (calculatorField.text.isNotEmpty) {
-      switch (val) {
-        case "+":
-          setState(() {
-            allAnswer += int.parse(calculatorField.text);
-            lastOperator = val;
-          });
-          break;
-        case "-":
-          setState(() {
-            allAnswer -= int.parse(calculatorField.text);
-            lastOperator = val;
-          });
-          break;
-        case "*":
-          setState(() {
-            specialAnswer = specialAnswer * double.parse(calculatorField.text);
-            lastOperator = val;
-          });
-          break;
-        case "/":
-          setState(() {
-            allAnswer /= int.parse(calculatorField.text);
-            lastOperator = val;
-          });
-          break;
-        default:
+      double currentValue = double.parse(calculatorField.text);
+
+      if (lastOperator.isNotEmpty) {
+        switch (lastOperator) {
+          case "+":
+            allAnswer += currentValue;
+            break;
+          case "-":
+            allAnswer -= currentValue;
+            break;
+          case "*":
+            allAnswer *= currentValue;
+            break;
+          case "/":
+            allAnswer /= currentValue;
+            break;
+          default:
+        }
+      } else {
+        allAnswer = currentValue;
       }
+
+      lastOperator = val;
       calculatorField.clear();
     }
   }
 
   void equalOperation() {
-    switch (lastOperator) {
-      case "+":
-        setState(() {
-          allAnswer += int.parse(calculatorField.text);
-          calculatorField.clear();
-        });
-        break;
-      case "-":
-        setState(() {
-          allAnswer -= int.parse(calculatorField.text);
-          calculatorField.clear();
-        });
-        break;
-      case "*":
-        setState(() {
-          specialAnswer = specialAnswer * double.parse(calculatorField.text);
-          print(specialAnswer);
+    if (calculatorField.text.isNotEmpty) {
+      double currentValue = double.parse(calculatorField.text);
 
-          calculatorField.clear();
-        });
-        break;
-      case "/":
-        setState(() {
-          allAnswer /= int.parse(calculatorField.text);
-          calculatorField.clear();
-        });
-        break;
-      default:
+      switch (lastOperator) {
+        case "+":
+          setState(() {
+            allAnswer += currentValue;
+          });
+          break;
+        case "-":
+          setState(() {
+            allAnswer -= currentValue;
+          });
+          break;
+        case "*":
+          setState(() {
+            allAnswer *= currentValue;
+          });
+          break;
+        case "/":
+          setState(() {
+            allAnswer /= currentValue;
+          });
+          break;
+        default:
+      }
+
+      calculatorField.text = allAnswer.toString();
+      lastOperator = '';
     }
   }
 }
