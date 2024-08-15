@@ -9,10 +9,11 @@ class CalculatorPractice extends StatefulWidget {
 }
 
 class _CalculatorPracticeState extends State<CalculatorPractice> {
+  final calculatorField = TextEditingController();
   List calculatorBtns = [
-    "AC",
-    "<",
+    "C",
     "%",
+    "<=",
     "/",
     "7",
     "8",
@@ -41,23 +42,38 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Text(
-              "1000 + 50",
-              style: theme.textTheme.bodyLarge!.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(.6),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: theme.colorScheme.onSurface,
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Text(
-              "1050",
-              style: theme.textTheme.titleLarge!.copyWith(
-                color: theme.colorScheme.onSurface,
-                fontWeight: FontWeight.w600,
-              ),
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: calculatorField,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "0",
+                      hintTextDirection: TextDirection.rtl,
+                      hintStyle: theme.textTheme.bodyLarge!.copyWith(
+                        color: theme.colorScheme.onSurface,
+                      )),
+                  textDirection: TextDirection.rtl,
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "1050",
+                    style: theme.textTheme.titleLarge!.copyWith(
+                      color: theme.colorScheme.onSurface,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           const Gap(10),
@@ -73,18 +89,39 @@ class _CalculatorPracticeState extends State<CalculatorPractice> {
               crossAxisSpacing: 10,
               mainAxisExtent: 50,
             ),
-            itemBuilder: (context, index) => Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: theme.colorScheme.primaryContainer,
+            itemBuilder: (context, index) => InkWell(
+              onTap: () {
+                var val = calculatorField.text;
+                calculatorField.text = val + calculatorBtns[index];
+              },
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: theme.colorScheme.primaryContainer,
+                ),
+                child: Text(
+                  calculatorBtns[index],
+                  style: theme.textTheme.titleLarge!.copyWith(
+                    color: theme.colorScheme.onPrimaryContainer,
+                  ),
+                ),
               ),
-              child: Text(calculatorBtns[index]),
             ),
           )
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    calculatorField.dispose();
+  }
+
+  void clear() {
+    calculatorField.clear();
   }
 }
