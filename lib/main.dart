@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
-import 'package:flutter_practice/practice/provider/form_validator_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
