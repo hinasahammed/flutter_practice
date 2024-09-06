@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/model/user/user.dart';
 import 'package:http/http.dart' as http;
 
 class GetApiTest extends StatefulWidget {
@@ -11,7 +12,7 @@ class GetApiTest extends StatefulWidget {
 }
 
 class _GetApiTestState extends State<GetApiTest> {
-  List data = [];
+  List<User> data = [];
   @override
   void initState() {
     super.initState();
@@ -26,17 +27,17 @@ class _GetApiTestState extends State<GetApiTest> {
       ),
       body: ListView.builder(
           itemCount: data.length,
+          
           itemBuilder: (context, index) {
             if (data.isEmpty) {
               return const Text("No data found");
             } else {
               return Card(
                 child: ListTile(
-                  title: Text(
-                      data[index]['first_name'] + data[index]['last_name']),
-                  subtitle: Text(data[index]['email']),
+                  title: Text(data[index].firstName! + data[index].lastName!),
+                  subtitle: Text(data[index].email!),
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(data[index]['avatar']),
+                    backgroundImage: NetworkImage(data[index].avatar!),
                   ),
                 ),
               );
@@ -54,7 +55,9 @@ class _GetApiTestState extends State<GetApiTest> {
           .timeout(const Duration(seconds: 20));
       if (response.statusCode == 200) {
         setState(() {
-          data = jsonDecode(response.body)["data"];
+          for (var i in jsonDecode(response.body)["data"]) {
+            data.add(User.fromJson(i));
+          }
         });
       }
     } catch (e) {
