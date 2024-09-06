@@ -6,7 +6,6 @@ class CounterWithProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("biuld");
     final theme = Theme.of(context);
     final provider = Provider.of<CounterProvider>(context, listen: false);
     return Scaffold(
