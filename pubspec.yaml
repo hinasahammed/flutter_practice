@@ -48,6 +48,7 @@ dependencies:
   provider: ^6.1.2
   http: ^1.2.2
   json_annotation: ^4.9.0
+  rive: ^0.13.13
 
 dev_dependencies:
   flutter_test:
