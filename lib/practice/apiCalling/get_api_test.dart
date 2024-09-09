@@ -27,7 +27,6 @@ class _GetApiTestState extends State<GetApiTest> {
       ),
       body: ListView.builder(
           itemCount: data.length,
-          
           itemBuilder: (context, index) {
             if (data.isEmpty) {
               return const Text("No data found");
@@ -61,7 +60,7 @@ class _GetApiTestState extends State<GetApiTest> {
         });
       }
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 }
