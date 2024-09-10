@@ -86,7 +86,7 @@ class _NewsApiState extends State<NewsApi> {
     try {
       final response = await http.get(
         Uri.parse(
-          "https://newsapi.org/v2/everything?q=tesla&from=2024-08-09&sortBy=publishedAt&apiKey=d6ffde51b27a48f487cae423dad906a9",
+          "https://newsapi.org/v2/everything?q=tesla&from=2024-08-10&sortBy=publishedAt&apiKey=d6ffde51b27a48f487cae423dad906a9",
         ),
       );
       if (response.statusCode == 200) {
