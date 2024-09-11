@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_practice/model/languages_model/language.dart'; // Assuming correct path
+import 'package:flutter_practice/model/languages_model/language.dart'; 
 
 class LanguageTranslation extends StatefulWidget {
   const LanguageTranslation({super.key});
@@ -14,15 +14,16 @@ class LanguageTranslation extends StatefulWidget {
 
 class _LanguageTranslationState extends State<LanguageTranslation> {
   List<Language> allLanguages = [];
-  Language? selectedLanguage;
+  Language? selectedYourLanguage;
+  Language? selectedtranslated;
   final yourLanguageController = TextEditingController();
   final translatedLanguageController = TextEditingController();
+  String translatedText = '';
 
   @override
   void initState() {
     super.initState();
     fetchAlllanguages();
-    translateLanguage();
   }
 
   @override
@@ -45,7 +46,7 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
             ),
             const Gap(20),
             DropdownButtonFormField<Language>(
-              value: selectedLanguage,
+              value: selectedYourLanguage,
               hint: const Text("Select a language"),
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -58,13 +59,35 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
               }).toList(),
               onChanged: (Language? newLanguage) {
                 setState(() {
-                  selectedLanguage = newLanguage;
+                  selectedYourLanguage = newLanguage;
                 });
               },
             ),
             const Gap(20),
-            TextField(
+            DropdownButtonFormField<Language>(
+              value: selectedtranslated,
+              hint: const Text("Select a language"),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+              ),
+              items: allLanguages.map((language) {
+                return DropdownMenuItem<Language>(
+                  value: language,
+                  child: Text(language.name ?? 'Unknown'),
+                );
+              }).toList(),
+              onChanged: (Language? newLanguage) {
+                setState(() {
+                  selectedtranslated = newLanguage;
+                });
+              },
+            ),
+            const Gap(20),
+            TextFormField(
               controller: yourLanguageController,
+              onChanged: (value) {
+                translateLanguage();
+              },
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: "Enter your text here",
@@ -79,33 +102,31 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
               ),
             ),
             const Gap(20),
-            DropdownButtonFormField<Language>(
-              value: selectedLanguage,
-              hint: const Text("Select a language"),
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+            Card(
+              child: Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(8),
+                height: 200,
+                child: Text(
+                  translatedText,
+                  style: theme.textTheme.titleLarge!.copyWith(
+                    color: theme.colorScheme.primary,
+                  ),
+                ),
               ),
-              items: allLanguages.map((language) {
-                return DropdownMenuItem<Language>(
-                  value: language,
-                  child: Text(language.name ?? 'Unknown'),
-                );
-              }).toList(),
-              onChanged: (Language? newLanguage) {
-                setState(() {
-                  selectedLanguage = newLanguage;
-                });
-              },
             ),
-            const Gap(20),
-            TextField(
-              controller: yourLanguageController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Enter your text here",
+            const Gap(10),
+            SizedBox(
+              height: 50,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  translateLanguage();
+                },
+                child: const Text("Translate"),
               ),
-              maxLines: 6,
-            ),
+            )
           ],
         ),
       ),
@@ -127,8 +148,7 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
       if (response.statusCode == 200) {
         setState(() {
           for (var i in jsonDecode(response.body)['languages']) {
-            allLanguages
-                .add(Language.fromJson(i)); // Add each language to the list
+            allLanguages.add(Language.fromJson(i));
           }
         });
       }
@@ -139,7 +159,6 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
 
   Future translateLanguage() async {
     try {
-      print("Working");
       final response = await http.post(
         Uri.parse(
             "https://deep-translate1.p.rapidapi.com/language/translate/v2"),
@@ -149,13 +168,17 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
           "x-rapidapi-key":
               "b65e9e1178msh7661c663c46802cp15188djsnc3290d348d6c",
         },
-        body: {
-          "q": "hu!",
-          "source": "en",
-          "target": "es",
-        },
+        body: jsonEncode({
+          "q": yourLanguageController.text,
+          "source": selectedYourLanguage!.language,
+          "target": selectedtranslated!.language,
+        }),
       );
-      print(response.body);
+      var translated =
+          jsonDecode(response.body)['data']['translations']['translatedText'];
+      setState(() {
+        translatedText = translated.toString();
+      });
     } catch (e) {
       debugPrint(e.toString());
     }

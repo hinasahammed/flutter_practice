@@ -1,0 +1,40 @@
+com.example.flutter_practice.app-lifecycle-livedata-2.7.0-0 C:\Users\hidah\.gradle\caches\transforms-3\0313b4099446464f98d0df0606c58c95\transformed\lifecycle-livedata-2.7.0\res
+com.example.flutter_practice.app-jetified-core-1.0.0-1 C:\Users\hidah\.gradle\caches\transforms-3\052a56087b23de77791a629d260284c0\transformed\jetified-core-1.0.0\res
+com.example.flutter_practice.app-jetified-profileinstaller-1.3.1-2 C:\Users\hidah\.gradle\caches\transforms-3\166e5df34c1c015ef6ddeae137513a3f\transformed\jetified-profileinstaller-1.3.1\res
+com.example.flutter_practice.app-lifecycle-viewmodel-2.7.0-3 C:\Users\hidah\.gradle\caches\transforms-3\2e94595ca22e3aadcdebdc547820608c\transformed\lifecycle-viewmodel-2.7.0\res
+com.example.flutter_practice.app-jetified-datastore-1.0.0-4 C:\Users\hidah\.gradle\caches\transforms-3\3314cb25a5330f11bf2a55b7a9a310ab\transformed\jetified-datastore-1.0.0\res
+com.example.flutter_practice.app-jetified-lifecycle-livedata-core-ktx-2.7.0-5 C:\Users\hidah\.gradle\caches\transforms-3\455c428e62a6dd75da98c7152f7af462\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\res
+com.example.flutter_practice.app-jetified-annotation-experimental-1.4.0-6 C:\Users\hidah\.gradle\caches\transforms-3\4d10c72f31024081b56fc5037069e011\transformed\jetified-annotation-experimental-1.4.0\res
+com.example.flutter_practice.app-jetified-startup-runtime-1.1.1-7 C:\Users\hidah\.gradle\caches\transforms-3\4ee1d1c3643bd699aea17aa2adbcb7ee\transformed\jetified-startup-runtime-1.1.1\res
+com.example.flutter_practice.app-jetified-window-java-1.2.0-8 C:\Users\hidah\.gradle\caches\transforms-3\5292c4072ce6d2ab49b0e25db445cdfe\transformed\jetified-window-java-1.2.0\res
+com.example.flutter_practice.app-jetified-play-services-base-18.3.0-9 C:\Users\hidah\.gradle\caches\transforms-3\6d807e350b37d9206ed12dedf519bf85\transformed\jetified-play-services-base-18.3.0\res
+com.example.flutter_practice.app-jetified-lifecycle-viewmodel-savedstate-2.7.0-10 C:\Users\hidah\.gradle\caches\transforms-3\6e7c2231d2ac9b957ecfe9d432e59ed2\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\res
+com.example.flutter_practice.app-core-runtime-2.2.0-11 C:\Users\hidah\.gradle\caches\transforms-3\73778f1c206428361b6eebbb974be913\transformed\core-runtime-2.2.0\res
+com.example.flutter_practice.app-jetified-core-ktx-1.13.1-12 C:\Users\hidah\.gradle\caches\transforms-3\740c93e8e1043856a6b7cb15a7eaa9f0\transformed\jetified-core-ktx-1.13.1\res
+com.example.flutter_practice.app-jetified-play-services-basement-18.3.0-13 C:\Users\hidah\.gradle\caches\transforms-3\7b4881d0d08dada2f4df61a6dcb57279\transformed\jetified-play-services-basement-18.3.0\res
+com.example.flutter_practice.app-jetified-activity-1.9.1-14 C:\Users\hidah\.gradle\caches\transforms-3\8d9ab232f64f5da73b6b55c8d6b9e038\transformed\jetified-activity-1.9.1\res
+com.example.flutter_practice.app-lifecycle-runtime-2.7.0-15 C:\Users\hidah\.gradle\caches\transforms-3\98474e5913354eaede53aaa879a4dd8b\transformed\lifecycle-runtime-2.7.0\res
+com.example.flutter_practice.app-jetified-savedstate-1.2.1-16 C:\Users\hidah\.gradle\caches\transforms-3\aadceac8ee0316c01a9163bad1a5e0ed\transformed\jetified-savedstate-1.2.1\res
+com.example.flutter_practice.app-browser-1.8.0-17 C:\Users\hidah\.gradle\caches\transforms-3\b4e4ef13627bf6f9133e3fb4635c024f\transformed\browser-1.8.0\res
+com.example.flutter_practice.app-fragment-1.7.1-18 C:\Users\hidah\.gradle\caches\transforms-3\c683cde5b1f5377825fe27da54e1b718\transformed\fragment-1.7.1\res
+com.example.flutter_practice.app-jetified-datastore-preferences-1.0.0-19 C:\Users\hidah\.gradle\caches\transforms-3\cb38a9efa74695bcecf2cdc4810f475f\transformed\jetified-datastore-preferences-1.0.0\res
+com.example.flutter_practice.app-lifecycle-livedata-core-2.7.0-20 C:\Users\hidah\.gradle\caches\transforms-3\ce9e6112a0f9c5113844bb49506e7a06\transformed\lifecycle-livedata-core-2.7.0\res
+com.example.flutter_practice.app-jetified-window-1.2.0-21 C:\Users\hidah\.gradle\caches\transforms-3\d47b1192960df52846144d82ac9e1d6f\transformed\jetified-window-1.2.0\res
+com.example.flutter_practice.app-jetified-lifecycle-process-2.7.0-22 C:\Users\hidah\.gradle\caches\transforms-3\d674cd90e13def17f77b3f8010d35e09\transformed\jetified-lifecycle-process-2.7.0\res
+com.example.flutter_practice.app-jetified-tracing-1.2.0-23 C:\Users\hidah\.gradle\caches\transforms-3\e67a2d3f5080e81a9ca4ada76d6846fb\transformed\jetified-tracing-1.2.0\res
+com.example.flutter_practice.app-core-1.13.1-24 C:\Users\hidah\.gradle\caches\transforms-3\fac84cd5ecf1ec88a8c98571217c9350\transformed\core-1.13.1\res
+com.example.flutter_practice.app-packaged_res-25 C:\Users\hidah\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_plugin_android_lifecycle-2.0.21\android\build\intermediates\packaged_res\debug
+com.example.flutter_practice.app-packaged_res-26 C:\Users\hidah\AppData\Local\Pub\Cache\hosted\pub.dev\geocoding_android-3.3.1\android\build\intermediates\packaged_res\debug
+com.example.flutter_practice.app-packaged_res-27 C:\Users\hidah\AppData\Local\Pub\Cache\hosted\pub.dev\geolocator_android-4.6.1\android\build\intermediates\packaged_res\debug
+com.example.flutter_practice.app-packaged_res-28 C:\Users\hidah\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_android-0.8.12+12\android\build\intermediates\packaged_res\debug
+com.example.flutter_practice.app-packaged_res-29 C:\Users\hidah\AppData\Local\Pub\Cache\hosted\pub.dev\rive_common-0.4.11\android\build\intermediates\packaged_res\debug
+com.example.flutter_practice.app-packaged_res-30 C:\Users\hidah\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.3.1\android\build\intermediates\packaged_res\debug
+com.example.flutter_practice.app-packaged_res-31 C:\Users\hidah\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_android-6.3.9\android\build\intermediates\packaged_res\debug
+com.example.flutter_practice.app-pngs-32 D:\hinas project\flutter_practice\android\app\build\generated\res\pngs\debug
+com.example.flutter_practice.app-resValues-33 D:\hinas project\flutter_practice\android\app\build\generated\res\resValues\debug
+com.example.flutter_practice.app-rs-34 D:\hinas project\flutter_practice\android\app\build\generated\res\rs\debug
+com.example.flutter_practice.app-mergeDebugResources-35 D:\hinas project\flutter_practice\android\app\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.flutter_practice.app-mergeDebugResources-36 D:\hinas project\flutter_practice\android\app\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.flutter_practice.app-merged_res-37 D:\hinas project\flutter_practice\android\app\build\intermediates\merged_res\debug
+com.example.flutter_practice.app-debug-38 D:\hinas project\flutter_practice\android\app\src\debug\res
+com.example.flutter_practice.app-main-39 D:\hinas project\flutter_practice\android\app\src\main\res
