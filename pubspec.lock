@@ -329,10 +329,10 @@ packages:
     dependency: "direct main"
     description:
       name: geolocator
-      sha256: "9e5d5e0945626984d9b2b0c3a612c6ee9b3e9bfffb8ce2af702a176391055861"
+      sha256: "0ec58b731776bc43097fcf751f79681b6a8f6d3bc737c94779fe9f1ad73c1a81"
       url: "https://pub.dev"
     source: hosted
-    version: "13.0.0"
+    version: "13.0.1"
   geolocator_android:
     dependency: transitive
     description:
