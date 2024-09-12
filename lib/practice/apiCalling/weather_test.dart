@@ -1,26 +1,25 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/model/weather_model/weather_model.dart';
 import 'package:gap/gap.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
-class WeatherApi extends StatefulWidget {
-  const WeatherApi({super.key});
+class WeatherTest extends StatefulWidget {
+  const WeatherTest({super.key});
 
   @override
-  State<WeatherApi> createState() => _WeatherApiState();
+  State<WeatherTest> createState() => _WeatherTestState();
 }
 
-class _WeatherApiState extends State<WeatherApi> {
+class _WeatherTestState extends State<WeatherTest> {
   @override
   void initState() {
     super.initState();
     fetchWeather();
   }
 
-  WeatherModel? weatherModel;
+  dynamic weather;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -28,7 +27,7 @@ class _WeatherApiState extends State<WeatherApi> {
       appBar: AppBar(
         title: const Text("Weather"),
       ),
-      body: weatherModel == null
+      body: weather == null
           ? const Center(
               child: CircularProgressIndicator(),
             )
@@ -39,24 +38,24 @@ class _WeatherApiState extends State<WeatherApi> {
                 child: Column(
                   children: [
                     Text(
-                      weatherModel!.location!.name ?? '',
+                      weather['location']['name'] ?? '',
                       style: theme.textTheme.headlineLarge!.copyWith(
                         color: theme.colorScheme.onSurface,
                       ),
                     ),
                     Text(
-                      weatherModel!.location!.localtime ?? '',
+                      weather['location']['localtime'] ?? '',
                       style: theme.textTheme.titleLarge!.copyWith(
                         color: theme.colorScheme.onSurface,
                       ),
                     ),
                     Image.network(
-                      weatherModel!.current!.condition!.icon ?? '',
+                      weather['current']['condition']['icon'] ?? '',
                       width: 150,
                       fit: BoxFit.cover,
                     ),
                     Text(
-                      "${weatherModel!.current!.tempC.toString()}\u2103",
+                      "${weather['current']['temp_c']}\u2103",
                       style: theme.textTheme.displayLarge!.copyWith(
                         color: theme.colorScheme.primary,
                       ),
@@ -70,7 +69,7 @@ class _WeatherApiState extends State<WeatherApi> {
                             const Icon(Icons.wind_power),
                             const Gap(5),
                             Text(
-                              "${weatherModel!.current!.windMph.toString()} m/s",
+                              "${weather['current']['wind_mph'].toString()} m/s",
                               style: theme.textTheme.bodyLarge,
                             )
                           ],
@@ -81,7 +80,7 @@ class _WeatherApiState extends State<WeatherApi> {
                             const Icon(Icons.thermostat),
                             const Gap(5),
                             Text(
-                              weatherModel!.current!.pressureMb.toString(),
+                              weather['current']['pressure_mb'].toString(),
                               style: theme.textTheme.bodyLarge,
                             )
                           ],
@@ -134,7 +133,7 @@ class _WeatherApiState extends State<WeatherApi> {
           });
       if (response.statusCode == 200) {
         setState(() {
-          weatherModel = WeatherModel.fromJson(jsonDecode(response.body));
+          weather = jsonDecode(response.body);
         });
       }
     } catch (e) {

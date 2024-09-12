@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/apiCalling/weather_api.dart';
+import 'package:flutter_practice/practice/apiCalling/weather_test.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             ),
             useMaterial3: true,
           ),
-          home: const WeatherApi(),
+          home: const WeatherTest(),
         ),
       ),
     );

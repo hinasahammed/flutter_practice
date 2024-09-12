@@ -49,7 +49,7 @@ dependencies:
   http: ^1.2.2
   json_annotation: ^4.9.0
   rive: ^0.13.13
-  geolocator: ^13.0.1
+  geolocator: ^7.0.0
 
 dev_dependencies:
   flutter_test:
