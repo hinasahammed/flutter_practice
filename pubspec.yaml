@@ -44,7 +44,7 @@ dependencies:
   lottie: ^3.1.2
   text_marquee: ^0.0.2
   url_launcher: ^6.3.0
-  shared_preferences: ^2.3.1
+  shared_preferences: ^2.3.2
   provider: ^6.1.2
   http: ^1.2.2
   json_annotation: ^4.9.0
