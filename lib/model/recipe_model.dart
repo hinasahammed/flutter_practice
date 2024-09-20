@@ -1,10 +1,13 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class RecipeModel {
   final String recipeName;
-  final String ingredients;
-  final String instructions;
+  final List ingredients;
+  final List instructions;
 
   RecipeModel({
     required this.recipeName,
@@ -14,8 +17,8 @@ class RecipeModel {
 
   RecipeModel copyWith({
     String? recipeName,
-    String? ingredients,
-    String? instructions,
+    List? ingredients,
+    List? instructions,
   }) {
     return RecipeModel(
       recipeName: recipeName ?? this.recipeName,
@@ -35,28 +38,30 @@ class RecipeModel {
   factory RecipeModel.fromMap(Map<String, dynamic> map) {
     return RecipeModel(
       recipeName: map['recipeName'] as String,
-      ingredients: map['ingredients'] as String,
-      instructions: map['instructions'] as String,
+      ingredients: List.from((map['ingredients'] as List)),
+      instructions: List.from((map['instructions'] as List)),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory RecipeModel.fromJson(String source) => RecipeModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory RecipeModel.fromJson(String source) =>
+      RecipeModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'RecipeModel(recipeName: $recipeName, ingredients: $ingredients, instructions: $instructions)';
+  String toString() =>
+      'RecipeModel(recipeName: $recipeName, ingredients: $ingredients, instructions: $instructions)';
 
   @override
   bool operator ==(covariant RecipeModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.recipeName == recipeName &&
-      other.ingredients == ingredients &&
-      other.instructions == instructions;
+
+    return other.recipeName == recipeName &&
+        listEquals(other.ingredients, ingredients) &&
+        listEquals(other.instructions, instructions);
   }
 
   @override
-  int get hashCode => recipeName.hashCode ^ ingredients.hashCode ^ instructions.hashCode;
+  int get hashCode =>
+      recipeName.hashCode ^ ingredients.hashCode ^ instructions.hashCode;
 }
