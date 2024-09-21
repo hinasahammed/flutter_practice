@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/model/recipe_model.dart';
+import 'package:flutter_practice/model/firebase/recipe_model.dart';
 import 'package:gap/gap.dart';
 
 class RecipeView extends StatefulWidget {
@@ -75,9 +75,14 @@ class _RecipeViewState extends State<RecipeView> {
                 border: Border.all(color: theme.colorScheme.onSurface),
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: ListView.separated(
+              child: GridView.builder(
                 itemCount: ingredients.length,
-                separatorBuilder: (context, index) => const Gap(5),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 350,
+                  mainAxisExtent: 80,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
                 itemBuilder: (context, index) => Card(
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 6),
