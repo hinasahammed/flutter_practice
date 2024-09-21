@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/practice/firebase/product/product_view.dart';
 import 'package:flutter_practice/practice/firebase/user/user_view.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
             ),
             useMaterial3: true,
           ),
-          home: const UserView(),
+          home: const ProductView(),
         ),
       ),
     );
