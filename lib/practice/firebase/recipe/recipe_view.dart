@@ -16,6 +16,7 @@ class _RecipeViewState extends State<RecipeView> {
   final instructionController = TextEditingController();
   List ingredients = [];
   List instructions = [];
+  int currentStep = 0;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -23,7 +24,7 @@ class _RecipeViewState extends State<RecipeView> {
       appBar: AppBar(
         title: const Text("Recipe"),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,6 +113,13 @@ class _RecipeViewState extends State<RecipeView> {
               ),
             ),
             const Gap(10),
+            Text(
+              "Add instruction steps",
+              style: theme.textTheme.titleLarge!.copyWith(
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
+            const Gap(10),
             Row(
               children: [
                 Expanded(
@@ -136,51 +144,41 @@ class _RecipeViewState extends State<RecipeView> {
               ],
             ),
             const Gap(10),
-            Container(
-              width: double.infinity,
-              height: 150,
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: theme.colorScheme.onSurface),
-                borderRadius: BorderRadius.circular(15),
+            if (instructions.isNotEmpty)
+              Stepper(
+                key: ValueKey(instructions.length),
+                onStepTapped: (index) {
+                  setState(() {
+                    currentStep = index;
+                  });
+                },
+                onStepContinue: () {
+                  if (currentStep < instructions.length - 1) {
+                    setState(() {
+                      currentStep += 1;
+                    });
+                  }
+                },
+                onStepCancel: () {
+                  if (currentStep > 0) {
+                    setState(() {
+                      currentStep -= 1;
+                    });
+                  }
+                },
+                currentStep: currentStep,
+                steps: instructions
+                    .map(
+                      (e) => Step(
+                        isActive: currentStep == instructions.indexOf(e)
+                            ? true
+                            : false,
+                        title: Text("Step ${instructions.indexOf(e) + 1}"),
+                        content: Text(e),
+                      ),
+                    )
+                    .toList(),
               ),
-              child: ListView.separated(
-                itemCount: instructions.length,
-                separatorBuilder: (context, index) => const Gap(5),
-                itemBuilder: (context, index) => Card(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "${index + 1}. ${instructions[index]}",
-                            style: theme.textTheme.bodyLarge!.copyWith(
-                              color: theme.colorScheme.onPrimary,
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              setState(() {
-                                instructions.remove(instructions[index]);
-                              });
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              color: theme.colorScheme.onPrimary,
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
             const Gap(20),
             SizedBox(
               width: double.infinity,
