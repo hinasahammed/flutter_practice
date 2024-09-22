@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/firebase/book/book_view.dart';
-import 'package:flutter_practice/practice/firebase/event/event_view.dart';
+import 'package:flutter_practice/practice/firebase/employee/employee_view.dart';
 import 'package:flutter_practice/practice/firebase/movie/movie_view.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
             ),
             useMaterial3: true,
           ),
-          home: const MovieView(),
+          home: const EmployeeView(),
         ),
       ),
     );
