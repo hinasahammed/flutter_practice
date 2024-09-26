@@ -1,7 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/model/firebase/recipe_model.dart';
+import 'package:flutter_practice/practice/firebase/recipe/add_task_sheet.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_practice/practice/firebase/recipe/recipe_details.dart';
 import 'package:gap/gap.dart';
+import 'package:http/http.dart' as http;
 
 class RecipeView extends StatefulWidget {
   const RecipeView({super.key});
@@ -11,221 +16,125 @@ class RecipeView extends StatefulWidget {
 }
 
 class _RecipeViewState extends State<RecipeView> {
-  final recipeController = TextEditingController();
-  final ingredientsController = TextEditingController();
-  final instructionController = TextEditingController();
-  List ingredients = [];
-  List instructions = [];
-  int currentStep = 0;
+  Map<String, Uint8List?> recipeImages = {};
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Recipe"),
       ),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Add recipe",
-              style: theme.textTheme.titleLarge!
-                  .copyWith(color: theme.colorScheme.onSurface),
-            ),
-            const Gap(20),
-            TextFormField(
-              controller: recipeController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Recipe name",
-              ),
-            ),
-            const Gap(10),
-            Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: ingredientsController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Ingredients",
-                    ),
-                  ),
-                ),
-                const Gap(10),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      ingredients.add(ingredientsController.text);
+        child: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection("Recipes").snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData ||
+                snapshot.data == null ||
+                snapshot.data!.docs.isEmpty) {
+              return const Center(
+                child: Text("No recipe found!"),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            } else {
+              return ListView.separated(
+                itemCount: snapshot.data!.docs.length,
+                separatorBuilder: (context, index) => const Gap(10),
+                itemBuilder: (context, index) {
+                  final data = snapshot.data!.docs[index];
+                  final recipeName = data['recipeName'] ?? '';
+                  if (!recipeImages.containsKey(recipeName)) {
+                    fetch(recipeName).then((imageData) {
+                      setState(() {
+                        recipeImages[recipeName] = imageData;
+                      });
                     });
-                    ingredientsController.clear();
-                  },
-                  child: const Text("Add"),
-                ),
-              ],
-            ),
-            const Gap(10),
-            Container(
-              width: double.infinity,
-              height: 150,
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: theme.colorScheme.onSurface),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: GridView.builder(
-                itemCount: ingredients.length,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 350,
-                  mainAxisExtent: 80,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                ),
-                itemBuilder: (context, index) => Card(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "${index + 1}. ${ingredients[index]}",
-                            style: theme.textTheme.bodyLarge!.copyWith(
-                              color: theme.colorScheme.onPrimary,
+                  }
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RecipeDetails(
+                              id: data.id,
+                              image: recipeImages[recipeName],
                             ),
-                          ),
+                          ));
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 100,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: recipeImages[recipeName] != null
+                              ? MemoryImage(recipeImages[recipeName]!)
+                              : const NetworkImage(
+                                  "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"),
+                          fit: BoxFit.cover,
+                          opacity: .5,
                         ),
-                        IconButton(
-                            onPressed: () {
-                              setState(() {
-                                ingredients.remove(ingredients[index]);
-                              });
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              color: theme.colorScheme.onPrimary,
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const Gap(10),
-            Text(
-              "Add instruction steps",
-              style: theme.textTheme.titleLarge!.copyWith(
-                color: theme.colorScheme.onSurface,
-              ),
-            ),
-            const Gap(10),
-            Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: instructionController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Instructions",
-                    ),
-                  ),
-                ),
-                const Gap(10),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      instructions.add(instructionController.text);
-                    });
-                    instructionController.clear();
-                  },
-                  child: const Text("Add"),
-                )
-              ],
-            ),
-            const Gap(10),
-            if (instructions.isNotEmpty)
-              Stepper(
-                key: ValueKey(instructions.length),
-                onStepTapped: (index) {
-                  setState(() {
-                    currentStep = index;
-                  });
-                },
-                onStepContinue: () {
-                  if (currentStep < instructions.length - 1) {
-                    setState(() {
-                      currentStep += 1;
-                    });
-                  }
-                },
-                onStepCancel: () {
-                  if (currentStep > 0) {
-                    setState(() {
-                      currentStep -= 1;
-                    });
-                  }
-                },
-                currentStep: currentStep,
-                steps: instructions
-                    .map(
-                      (e) => Step(
-                        isActive: currentStep == instructions.indexOf(e)
-                            ? true
-                            : false,
-                        title: Text("Step ${instructions.indexOf(e) + 1}"),
-                        content: Text(e),
                       ),
-                    )
-                    .toList(),
-              ),
-            const Gap(20),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  addRecipe(context);
+                      child: Text(
+                        data['recipeName'] ?? '',
+                        style: theme.textTheme.bodyLarge!.copyWith(
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
+                    ),
+                  );
                 },
-                child: const Text("Add Recipe"),
-              ),
-            ),
-          ],
+              );
+            }
+          },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await showModalBottomSheet(
+            context: context,
+            useSafeArea: true,
+            isScrollControlled: true,
+            builder: (context) => SizedBox(
+              height: size.height,
+              child: const AddTaskSheet(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
 
-  Future addRecipe(BuildContext context) async {
-    final firestore = FirebaseFirestore.instance;
-
+  Future<Uint8List?> fetch(String recipeName) async {
     try {
-      await firestore
-          .collection("Recipes")
-          .doc()
-          .set(RecipeModel(
-            recipeName: recipeController.text,
-            ingredients: ingredients,
-            instructions: instructions,
-          ).toMap())
-          .then(
-        (value) {
-          if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Added successfully"),
-              ),
-            );
-          }
+      final response = await http.post(
+        Uri.parse("https://text-to-image13.p.rapidapi.com/"),
+        headers: {
+          "Content-Type": "application/json",
+          "x-rapidapi-host": "text-to-image13.p.rapidapi.com",
+          "x-rapidapi-key":
+              "b65e9e1178msh7661c663c46802cp15188djsnc3290d348d6c",
         },
+        body: jsonEncode({"prompt": recipeName}),
       );
+
+      if (response.statusCode == 200) {
+        return response.bodyBytes; // Return the image data as bytes
+      } else {
+        print("Failed to fetch image: ${response.statusCode}");
+        return null;
+      }
     } catch (e) {
-      print(e.toString());
+      print("Error fetching image: $e");
+      return null;
     }
   }
 }
