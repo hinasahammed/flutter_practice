@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/practice/animation/openContainer/fadethroughexample.dart';
+import 'package:flutter_practice/practice/animation/openContainer/open_container_example.dart';
+import 'package:flutter_practice/practice/animation/openContainer/sharedzaxisexample.dart';
 import 'package:flutter_practice/practice/firebase/recipe/recipe_view.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
@@ -21,29 +24,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => ThemeProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => CounterProvider(),
-        ),
-      ],
-      child: Consumer<ThemeProvider>(
-        builder: (context, value, child) => MaterialApp(
-          title: 'Flutter Practice',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.deepPurple,
-              brightness:
-                  value.isDarkTheme ? Brightness.dark : Brightness.light,
-            ),
-            useMaterial3: true,
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => ThemeProvider(),
           ),
-          home: const RecipeView(),
-        ),
-      ),
-    );
+          ChangeNotifierProvider(
+            create: (context) => CounterProvider(),
+          ),
+        ],
+        child: Consumer<ThemeProvider>(
+          builder: (context, value, child) => MaterialApp(
+            title: 'Flutter Practice',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.deepPurple,
+                brightness:
+                    value.isDarkTheme ? Brightness.dark : Brightness.light,
+              ),
+              useMaterial3: true,
+            ),
+            home: const FadeThroughExample(),
+          ),
+        ));
   }
 }
