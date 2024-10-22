@@ -1,12 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/payment/payment_option.dart';
-import 'package:flutter_practice/practice/animation/openContainer/fadethroughexample.dart';
-import 'package:flutter_practice/practice/animation/openContainer/open_container_example.dart';
-import 'package:flutter_practice/practice/animation/openContainer/sharedzaxisexample.dart';
-import 'package:flutter_practice/practice/firebase/recipe/recipe_view.dart';
-import 'package:flutter_practice/practice/map/google_map.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
+import 'package:flutter_practice/practice/shimmer/shimmer_list.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -46,7 +43,11 @@ class MyApp extends StatelessWidget {
               ),
               useMaterial3: true,
             ),
-            home:  UpiPaymentPage(),
+            home: CachedNetworkImage(
+              imageUrl:
+                  "https://img.freepik.com/free-photo/wet-sphere-reflective-water-abstract-beauty-generated-by-ai_188544-19616.jpg",
+              placeholder: (context, url) => const ShimmerList(),
+            ),
           ),
         ));
   }
