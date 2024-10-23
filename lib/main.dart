@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/payment/payment_option.dart';
+import 'package:flutter_practice/practice/hinasprofessionalism/two_auth.dart';
+import 'package:flutter_practice/practice/map/flutter_map_test.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
 import 'package:flutter_practice/practice/shimmer/shimmer_list.dart';
@@ -33,22 +35,17 @@ class MyApp extends StatelessWidget {
         ],
         child: Consumer<ThemeProvider>(
           builder: (context, value, child) => MaterialApp(
-            title: 'Flutter Practice',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.deepPurple,
-                brightness:
-                    value.isDarkTheme ? Brightness.dark : Brightness.light,
+              title: 'Flutter Practice',
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: Colors.deepPurple,
+                  brightness:
+                      value.isDarkTheme ? Brightness.dark : Brightness.light,
+                ),
+                useMaterial3: true,
               ),
-              useMaterial3: true,
-            ),
-            home: CachedNetworkImage(
-              imageUrl:
-                  "https://img.freepik.com/free-photo/wet-sphere-reflective-water-abstract-beauty-generated-by-ai_188544-19616.jpg",
-              placeholder: (context, url) => const ShimmerList(),
-            ),
-          ),
+              home: const FlutterMapTest()),
         ));
   }
 }
