@@ -38,8 +38,8 @@ class _FlutterMapTestState extends State<FlutterMapTest> {
             initialCenter: LatLng(
                 11.283146296659249, 75.8159646775016), // London coordinates
             initialZoom: 15.2,
-            maxZoom: 30.0,
-            minZoom: 30.0,
+            maxZoom: 18.0,
+            minZoom: 3.0,
           ),
           children: [
             TileLayer(
