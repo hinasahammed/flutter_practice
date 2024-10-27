@@ -1,0 +1,17 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'main_text_matched_substring.g.dart';
+
+@JsonSerializable()
+class MainTextMatchedSubstring {
+	int? length;
+	int? offset;
+
+	MainTextMatchedSubstring({this.length, this.offset});
+
+	factory MainTextMatchedSubstring.fromJson(Map<String, dynamic> json) {
+		return _$MainTextMatchedSubstringFromJson(json);
+	}
+
+	Map<String, dynamic> toJson() => _$MainTextMatchedSubstringToJson(this);
+}
