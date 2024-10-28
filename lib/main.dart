@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/practice/chat/chat_screen.dart';
+import 'package:flutter_practice/practice/chat/chat_splash.dart';
+import 'package:flutter_practice/practice/chat/login_screen.dart';
 import 'package:flutter_practice/practice/map/auto_complete.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
@@ -31,17 +35,29 @@ class MyApp extends StatelessWidget {
         ],
         child: Consumer<ThemeProvider>(
           builder: (context, value, child) => MaterialApp(
-              title: 'Flutter Practice',
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(
-                  seedColor: Colors.deepPurple,
-                  brightness:
-                      value.isDarkTheme ? Brightness.dark : Brightness.light,
-                ),
-                useMaterial3: true,
+            title: 'Flutter Practice',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.deepPurple,
+                brightness:
+                    value.isDarkTheme ? Brightness.dark : Brightness.light,
               ),
-              home:  const AutoComplete()),
+              useMaterial3: true,
+            ),
+            home: StreamBuilder(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const ChatSplash();
+                }
+                if (snapshot.hasData) {
+                  return const ChatScreen();
+                }
+                return const LoginScreen();
+              },
+            ),
+          ),
         ));
   }
 }
