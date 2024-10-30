@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/practice/payment/payment_home_view.dart';
+import 'package:flutter_practice/practice/map/fetching_map_coord.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                 ),
                 useMaterial3: true,
               ),
-              home: const PaymentHomeView()),
+              home: const FetchingMapCoord()),
         ));
   }
 }
