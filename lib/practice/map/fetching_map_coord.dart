@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -15,16 +14,15 @@ class _FetchingMapCoordState extends State<FetchingMapCoord> {
   List<Marker> _markers = [];
   final LatLng _centerPoint =
       const LatLng(11.259341456786967, 75.79057566638929);
-  final double _distanceThreshold = 500; // 500 meters
+  final double _distanceThreshold = 1000;
 
   @override
   void initState() {
     super.initState();
-    _addInitialCenterMarker(); // Add center marker first
+    _addInitialCenterMarker();
     _fetchMarkers();
   }
 
-  // Add a marker for the initial center point
   void _addInitialCenterMarker() {
     setState(() {
       _markers.add(
@@ -51,7 +49,11 @@ class _FetchingMapCoordState extends State<FetchingMapCoord> {
           width: 80.0,
           height: 80.0,
           point: _centerPoint,
-          child: const Icon(Icons.location_on, color: Colors.red),
+          child: const Icon(
+            Icons.location_on,
+            color: Colors.red,
+            size: 45,
+          ),
         ),
       );
 
@@ -68,10 +70,11 @@ class _FetchingMapCoordState extends State<FetchingMapCoord> {
         if (distance <= _distanceThreshold) {
           markers.add(
             Marker(
-              width: 80.0,
-              height: 80.0,
+              width: 100.0,
+              height: 100.0,
               point: point,
               child: const Icon(
+                size: 40,
                 Icons.sports_football,
                 color: Colors.green,
               ),
