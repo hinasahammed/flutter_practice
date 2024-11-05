@@ -17,9 +17,11 @@ class _FlutterMapTestState extends State<FlutterMapTest> {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Could not open attribution URL')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not open attribution URL')),
+        );
+      }
     }
   }
 

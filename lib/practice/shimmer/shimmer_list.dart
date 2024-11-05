@@ -6,7 +6,6 @@ class ShimmerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
     return Shimmer.fromColors(
       baseColor: Colors.black.withOpacity(0.2),
       highlightColor: Colors.white54,

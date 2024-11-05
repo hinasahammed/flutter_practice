@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/model/firebase/user_model.dart';
@@ -116,7 +118,7 @@ class _UserViewState extends State<UserView> {
         },
       );
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }

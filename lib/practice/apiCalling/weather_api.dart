@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/model/weather_model/weather_model.dart';
@@ -138,7 +139,7 @@ class _WeatherApiState extends State<WeatherApi> {
         });
       }
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }

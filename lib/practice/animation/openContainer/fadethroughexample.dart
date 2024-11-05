@@ -5,7 +5,7 @@ class FadeThroughExample extends StatefulWidget {
   const FadeThroughExample({super.key});
 
   @override
-  _FadeThroughExampleState createState() => _FadeThroughExampleState();
+  State<FadeThroughExample> createState() => _FadeThroughExampleState();
 }
 
 class _FadeThroughExampleState extends State<FadeThroughExample> {
@@ -30,7 +30,7 @@ class _FadeThroughExampleState extends State<FadeThroughExample> {
             child: child,
           );
         },
-        child: _showFirstPage ? _FirstPage() : _SecondPage(),
+        child: _showFirstPage ? const FirstPage() : const SecondPage(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -44,7 +44,9 @@ class _FadeThroughExampleState extends State<FadeThroughExample> {
   }
 }
 
-class _FirstPage extends StatelessWidget {
+class FirstPage extends StatelessWidget {
+  const FirstPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -63,7 +65,8 @@ class _FirstPage extends StatelessWidget {
   }
 }
 
-class _SecondPage extends StatelessWidget {
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Center(

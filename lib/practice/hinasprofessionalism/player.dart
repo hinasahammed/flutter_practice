@@ -45,12 +45,13 @@ class _PlayerState extends State<Player> {
                   )
                       .then(
                     (value) {
-                      log("Success");
-                      Navigator.push(
+                     if (context.mounted) {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const Playerview(),
                           ));
+                     }
                     },
                   );
                 } catch (e) {

@@ -77,4 +77,5 @@ class DefaultFirebaseOptions {
     authDomain: 'flutterpractice-6f936.firebaseapp.com',
     storageBucket: 'flutterpractice-6f936.appspot.com',
   );
+
 }

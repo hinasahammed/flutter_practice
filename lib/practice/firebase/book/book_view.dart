@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/model/firebase/book_model.dart';
@@ -106,7 +108,7 @@ class _BookViewState extends State<BookView> {
         },
       );
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }

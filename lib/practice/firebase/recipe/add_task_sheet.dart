@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/model/firebase/recipe_model.dart';
@@ -220,7 +222,7 @@ class _AddTaskSheetState extends State<AddTaskSheet> {
         },
       );
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }

@@ -45,12 +45,13 @@ class _TurfState extends State<Turf> {
                   )
                       .then(
                     (value) {
-                      log("Success");
-                      Navigator.push(
+                      if (context.mounted) {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const TurfView(),
                           ));
+                      }
                     },
                   );
                 } catch (e) {

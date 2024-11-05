@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -129,11 +130,11 @@ class _RecipeViewState extends State<RecipeView> {
       if (response.statusCode == 200) {
         return response.bodyBytes; // Return the image data as bytes
       } else {
-        print("Failed to fetch image: ${response.statusCode}");
+        log("Failed to fetch image: ${response.statusCode}");
         return null;
       }
     } catch (e) {
-      print("Error fetching image: $e");
+      log("Error fetching image: $e");
       return null;
     }
   }

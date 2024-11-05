@@ -30,7 +30,7 @@ class _FetchingMapCoordState extends State<FetchingMapCoord> {
           width: 80.0,
           height: 80.0,
           point: _centerPoint,
-          child: const Icon(Icons.location_on, color: Colors.blue),
+          child: const Icon(Icons.location_on, color: Colors.blue,),
         ),
       );
     });
@@ -74,7 +74,7 @@ class _FetchingMapCoordState extends State<FetchingMapCoord> {
               height: 100.0,
               point: point,
               child: const Icon(
-                size: 40,
+                size: 30,
                 Icons.sports_football,
                 color: Colors.green,
               ),

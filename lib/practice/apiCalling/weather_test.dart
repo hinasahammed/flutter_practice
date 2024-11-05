@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -137,7 +138,7 @@ class _WeatherTestState extends State<WeatherTest> {
         });
       }
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }

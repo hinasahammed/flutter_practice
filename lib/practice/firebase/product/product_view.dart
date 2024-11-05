@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/model/firebase/product_modal.dart';
@@ -106,7 +108,7 @@ class _ProductViewState extends State<ProductView> {
         },
       );
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }

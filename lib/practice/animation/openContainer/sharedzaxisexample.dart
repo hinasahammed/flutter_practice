@@ -5,10 +5,10 @@ class SharedZAxisExample extends StatefulWidget {
   const SharedZAxisExample({super.key});
 
   @override
-  _SharedZAxisExampleState createState() => _SharedZAxisExampleState();
+  SharedZAxisExampleState createState() => SharedZAxisExampleState();
 }
 
-class _SharedZAxisExampleState extends State<SharedZAxisExample> {
+class SharedZAxisExampleState extends State<SharedZAxisExample> {
   bool _showFirstPage = true;
 
   @override
