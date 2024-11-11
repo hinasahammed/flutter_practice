@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/practice/chat/chat_screen.dart';
 import 'package:flutter_practice/practice/chat/chat_splash.dart';
 import 'package:flutter_practice/practice/chat/login_screen.dart';
+import 'package:flutter_practice/practice/payment/payment_home_view.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
 import 'package:provider/provider.dart';
@@ -64,28 +65,18 @@ class MyApp extends StatelessWidget {
         ],
         child: Consumer<ThemeProvider>(
           builder: (context, value, child) => MaterialApp(
-              title: 'Flutter Practice',
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(
-                  seedColor: Colors.deepPurple,
-                  brightness:
-                      value.isDarkTheme ? Brightness.dark : Brightness.light,
-                ),
-                useMaterial3: true,
+            title: 'Flutter Practice',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.deepPurple,
+                brightness:
+                    value.isDarkTheme ? Brightness.dark : Brightness.light,
               ),
-              home: StreamBuilder(
-                stream: FirebaseAuth.instance.authStateChanges(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const ChatSplash();
-                  }
-                  if (snapshot.hasData) {
-                    return const ChatScreen();
-                  }
-                  return const LoginScreen();
-                },
-              )),
+              useMaterial3: true,
+            ),
+            home: const PaymentHomeView(),
+          ),
         ));
   }
 }
