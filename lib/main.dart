@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/practice/chat/chat_screen.dart';
 import 'package:flutter_practice/practice/chat/chat_splash.dart';
 import 'package:flutter_practice/practice/chat/login_screen.dart';
+import 'package:flutter_practice/practice/excel/excel_practice.dart';
 import 'package:flutter_practice/practice/payment/payment_home_view.dart';
 import 'package:flutter_practice/practice/provider/counter_with_provider.dart';
 import 'package:flutter_practice/practice/provider/dark_theme_light_theme.dart';
@@ -75,7 +76,7 @@ class MyApp extends StatelessWidget {
               ),
               useMaterial3: true,
             ),
-            home: const PaymentHomeView(),
+            home: const ExcelToJsonConverter(),
           ),
         ));
   }
